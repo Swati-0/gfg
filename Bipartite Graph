@@ -1,0 +1,33 @@
+class Solution {
+public:
+	bool isBipartite(int V, vector<int>adj[]){
+	    // Code here
+	    vector<int> color(V,-1);
+	    queue<int> q;
+	    
+	    for(int j=0; j<V; j++){
+	        if(color[j]==-1){
+	            color[j]=0;
+	            q.push(j);
+	            
+	            while(!q.empty()){
+	                int node=q.front();
+	                q.pop();
+	                
+	                for(int i=0; i<adj[node].size(); i++){
+	                    if(color[adj[node][i]]==-1){
+	                        color[adj[node][i]]=(1+color[node])%2;
+	                        q.push(adj[node][i]);
+	                    }
+	                    else{
+	                        if(color[adj[node][i]]==color[node])
+	                        return false;
+	                    }
+	                }
+	            }
+	        }
+	    }
+	    return true;
+	}
+
+};
