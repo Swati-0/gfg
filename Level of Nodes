@@ -1,0 +1,31 @@
+class Solution
+{
+	public:
+	//Function to find the level of node X.
+	int nodeLevel(int V, vector<int> adj[], int X) 
+	{
+	    // code here
+	    vector<bool> vis(V, false);
+	    vector<int> level(V, -1);
+	    
+	    queue<int>q;
+	    q.push(0);
+	    vis[0]=true;
+	    level[0]=0;
+	    
+	    while(!q.empty()){
+	        int current=q.front();
+	        q.pop();
+	        
+	        for(int nei:adj[current]){
+	            if(!vis[nei]){
+	                q.push(nei);
+	                vis[nei]=true;
+	                level[nei]=level[current]+1;
+	                
+	            }
+	        }
+	    }
+	    return level[X];
+	}
+};
