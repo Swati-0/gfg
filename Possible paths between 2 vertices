@@ -1,0 +1,22 @@
+class Solution {
+  public:
+    // Function to count paths between two vertices in a directed graph.
+    int countPaths(int V, vector<int> adj[], int source, int destination) {
+        // Code here
+        queue<int> q;
+        q.push(source);
+        int path=0;
+        while(!q.empty()){
+            int u=q.front();
+            q.pop();
+            if(u==destination){
+                path++;
+                continue;
+            }
+            
+            for(auto & v:adj[u])
+            q.push(v);
+        }
+        return path;
+    }
+};
