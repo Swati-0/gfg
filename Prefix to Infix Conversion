@@ -1,0 +1,27 @@
+class Solution {
+  public:
+    string preToInfix(string pre_exp) {
+        // Write your code here
+        stack<string>s;
+        int n=pre_exp.size();
+        for(int i=n-1; i>=0; i--){
+            //char c=pre_exp[i];
+            if ((pre_exp[i] >= 'a' && pre_exp[i] <= 'z') || (pre_exp[i] >= 'A' && pre_exp[i] <= 'Z') || (pre_exp[i] >= '0' && pre_exp[i] <= '9')){
+                string c;
+                c.push_back(pre_exp[i]);
+                s.push(c);
+            }else{
+                    if(!s.empty()){
+                    string op1=s.top();
+                    s.pop();
+                    string op2=s.top();
+                    s.pop();
+                    string c='('+op1+pre_exp[i]+op2+')';
+                    s.push(c);
+                }
+                
+            }
+        }
+        return s.top();
+    }
+};
