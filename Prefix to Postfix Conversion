@@ -1,0 +1,24 @@
+class Solution {
+  public:
+    string preToPost(string pre_exp) {
+        int n=pre_exp.length();
+        stack<string>s;
+        for(int i=n-1; i>=0; i--){
+            if((pre_exp[i]>='a' && pre_exp[i]<='z') || (pre_exp[i]>='A' && pre_exp[i]<='Z') || (pre_exp[i]>='0' && pre_exp[i]<='9')){
+                string curr;
+                curr.push_back(pre_exp[i]);
+                s.push(curr);
+            }else{
+                if(!s.empty()){
+                    string op1=s.top();
+                    s.pop();
+                    string op2=s.top();
+                    s.pop();
+                    string c=op1+op2+pre_exp[i];
+                    s.push(c);
+                }
+            }
+        }
+        return s.top();
+    }
+};
