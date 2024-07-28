@@ -1,0 +1,20 @@
+class Solution {
+  public:
+    // Function returns the second
+    // largest elements
+    int print2largest(vector<int> &arr) {
+        // Code Here
+        int n=arr.size();
+        int largest=arr[0];
+        int slargest=-1;
+        for(int i=1; i<n; i++){
+            if(largest<arr[i]){
+                slargest=largest;
+                largest=arr[i];
+            }else if(slargest<arr[i] && largest>arr[i]){
+                slargest=arr[i];
+            }
+        }
+        return slargest;
+    }
+};
